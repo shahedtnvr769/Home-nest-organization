@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Home Nest Organization | Your Selection</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Modal Transitions */
+        .modal-overlay {
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+        }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e3e2e1",
+                    "primary-fixed": "#e5e2e1",
+                    "outline": "#747878",
+                    "secondary-fixed-dim": "#d8c3aa",
+                    "on-surface-variant": "#444748",
+                    "inverse-primary": "#c8c6c5",
+                    "tertiary": "#735c00",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "outline-variant": "#c4c7c7",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed": "#251a0a",
+                    "on-tertiary-container": "#4f3e00",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dadad9",
+                    "secondary": "#6c5c47",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#eeeeed",
+                    "secondary-container": "#f3dcc2",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-fixed": "#ffe088",
+                    "primary": "#000000",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-bright": "#faf9f8",
+                    "surface-container-low": "#f4f3f2",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-tint": "#5f5e5e",
+                    "on-tertiary-fixed": "#241a00",
+                    "background": "#faf9f8",
+                    "surface-container-high": "#e9e8e7",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#1c1b1b",
+                    "on-primary-container": "#858383",
+                    "on-primary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#f1f0f0",
+                    "tertiary-container": "#cca730",
+                    "secondary-fixed": "#f5dfc5",
+                    "on-secondary-fixed-variant": "#534431",
+                    "surface": "#faf9f8",
+                    "primary-container": "#1c1b1b",
+                    "on-secondary-container": "#70604b",
+                    "surface-variant": "#e3e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "unit": "8px",
+                    "margin-desktop": "64px",
+                    "gutter": "32px",
+                    "container-max": "1440px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Playfair Display"],
+                    "display-lg": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-sm": ["Playfair Display"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 transition-transform duration-300">
+    <div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="flex-1 hidden md:flex gap-8">
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer" href="../index.html#shop">Shop</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300 cursor-pointer" href="../index.html#showcase">Showcase</a>
+        </div>
+        <a class="font-display-lg text-headline-md tracking-widest text-primary cursor-pointer transition-opacity hover:opacity-70" href="../index.html">
+            <img alt="Home Nest Organization Logo" class="w-auto object-contain h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp-FhD0OGms9_QYxFukrPtmWAU2ymIkbZ-QojwxJEkdUazBxam-OpxGwyoH5nw-HzfHuqRnDt7mlznM3HQs9xyGwAbcr9EosqHQ3B4D_3qDVAKVluAVKLk5zpEVuYJKuiE4tGJS4fPzgfxDR8EEI-JwzPSMEvkDgkokHQeAE3KX_2Kr8MdHawUWzAiBvCCkuuGyTAv2HOuIOcK30Zug8kMls4mJtTxQnM8HRb2vKyixPa7aZtBGjKLwOz7dyMrQnbxqiHhDSg5qx4"/>
+        </a>
+        <div class="flex-1 flex justify-end items-center gap-6">
+            <div class="relative">
+                <button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity" data-icon="shopping_bag">shopping_bag</button>
+                <span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold" id="cart-count">0</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <!-- Cart State Container -->
+    <div id="cart-content-wrapper" class="flex flex-col lg:flex-row gap-gutter">
+        
+        <!-- Left Side: Selection list -->
+        <div class="flex-grow lg:w-2/3">
+            <h1 class="font-display-lg text-display-lg mb-12 hidden md:block">Your Selection</h1>
+            <h1 class="font-display-lg-mobile text-display-lg-mobile mb-8 md:hidden">Your Selection</h1>
+            
+            <div id="cart-items-container" class="space-y-12">
+                <!-- Items are populated dynamically by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Right Side: Order Summary -->
+        <div class="lg:w-1/3 mt-16 lg:mt-0">
+            <div class="sticky top-32 bg-surface-container-low p-8 md:p-12 space-y-8 border border-outline-variant/30">
+                <h3 class="font-headline-sm text-headline-sm tracking-tight border-b border-outline-variant pb-6">Order Summary</h3>
+                
+                <div class="space-y-4" id="order-summary-breakdown">
+                    <!-- Summary items list populated dynamically -->
+                </div>
+                
+                <div class="pt-6 border-t border-outline-variant flex justify-between items-baseline font-semibold">
+                    <span class="font-label-caps text-label-caps">Total</span>
+                    <span class="font-headline-md text-headline-md text-primary" id="summary-total">$0.00</span>
+                </div>
+                
+                <div class="pt-6 space-y-6">
+                    <button onclick="checkoutOrder()" class="w-full bg-primary text-on-primary py-5 rounded-full font-label-caps text-label-caps tracking-widest hover:bg-secondary transition-all duration-300 active:scale-[0.98]">
+                        BUY NOW / CHECKOUT
+                    </button>
+                    <div class="text-center">
+                        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-8 transition-all" href="../index.html#shop">
+                            CONTINUE SHOPPING
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="pt-8 space-y-4 border-t border-outline-variant/30">
+                    <div class="flex items-center gap-3 text-on-surface-variant opacity-70">
+                        <span class="material-symbols-outlined text-[20px]">lock</span>
+                        <span class="font-label-caps text-[10px]">SECURE SSL ENCRYPTION</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-on-surface-variant opacity-70">
+                        <span class="material-symbols-outlined text-[20px]">local_shipping</span>
+                        <span class="font-label-caps text-[10px]">INSURED GLOBAL DELIVERY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Empty Cart Placeholder (hidden by default) -->
+    <div id="empty-cart-placeholder" class="hidden flex-col items-center justify-center py-20 text-center space-y-8 max-w-lg mx-auto">
+        <span class="material-symbols-outlined text-[80px] text-on-surface-variant opacity-30">shopping_bag</span>
+        <div class="space-y-4">
+            <h2 class="font-display-lg text-headline-md italic">Your Selection is Empty</h2>
+            <p class="font-body-md text-on-surface-variant max-w-sm mx-auto">Discover our collection of modern curated storage, furniture and lighting design items.</p>
+        </div>
+        <a href="../index.html#shop" class="inline-block bg-primary text-on-primary px-8 py-4 rounded-full font-label-caps text-label-caps tracking-widest hover:bg-secondary transition-all">
+            EXPLORE COLLECTIONS
+        </a>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-low border-t border-outline-variant flat no shadows">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto">
+        <div class="md:col-span-1 space-y-4">
+            <a href="../index.html">
+                <img alt="Home Nest Organization Logo" class="w-auto object-contain h-16" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp-FhD0OGms9_QYxFukrPtmWAU2ymIkbZ-QojwxJEkdUazBxam-OpxGwyoH5nw-HzfHuqRnDt7mlznM3HQs9xyGwAbcr9EosqHQ3B4D_3qDVAKVluAVKLk5zpEVuYJKuiE4tGJS4fPzgfxDR8EEI-JwzPSMEvkDgkokHQeAE3KX_2Kr8MdHawUWzAiBvCCkuuGyTAv2HOuIOcK30Zug8kMls4mJtTxQnM8HRb2vKyixPa7aZtBGjKLwOz7dyMrQnbxqiHhDSg5qx4"/>
+            </a>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-[240px]">
+                Redefining home organization and curation. A sanctuary of exceptional design objects.
+            </p>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-caps text-label-caps font-bold">Discover</h4>
+            <div class="flex flex-col gap-2">
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="../index.html">Brand Story</a>
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="../index.html#shop">Collections</a>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-caps text-label-caps font-bold">Client Care</h4>
+            <div class="flex flex-col gap-2">
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Shipping</a>
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Returns</a>
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Contact</a>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <h4 class="font-label-caps text-label-caps font-bold">Social</h4>
+            <div class="flex flex-col gap-2">
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Instagram</a>
+                <a class="font-body-md text-body-md md:font-label-caps md:text-label-caps text-on-surface-variant hover:text-primary underline decoration-1 underline-offset-4 transition-all duration-300" href="#">Pinterest</a>
+            </div>
+        </div>
+    </div>
+    <div class="px-margin-mobile md:px-margin-desktop py-8 max-w-container-max mx-auto flex justify-center border-t border-outline-variant/30">
+        <p class="font-label-caps text-[10px] text-on-surface-variant">© 2026 HOME NEST ORGANIZATION. ALL RIGHTS RESERVED.</p>
+    </div>
+</footer>
+
+<!-- Transaction Checkout Success Modal -->
+<div id="checkout-modal" class="modal-overlay fixed inset-0 bg-primary/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+    <div class="modal-content bg-surface max-w-md w-full p-8 md:p-12 text-center border border-outline-variant shadow-2xl relative space-y-6">
+        <div class="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4 scale-110">
+            <span class="material-symbols-outlined text-[36px]">check_circle</span>
+        </div>
+        <div class="space-y-3">
+            <h2 class="font-display-lg text-headline-md italic tracking-tight">Order Placed</h2>
+            <p class="font-body-md text-on-surface-variant leading-relaxed">
+                Thank you for your curation purchase. Your order has been registered securely.
+            </p>
+            <p class="font-label-caps text-[11px] text-secondary tracking-widest pt-2" id="order-id-display">ORDER ID: #HN-84920</p>
+        </div>
+        <div class="pt-4">
+            <button onclick="closeSuccessModal()" class="w-full bg-primary text-on-primary py-4 rounded-full font-label-caps text-[12px] tracking-widest hover:bg-secondary transition-all active:scale-95">
+                RETURN TO SHOP
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Currency formatting helper
+    const formatCurrency = (val) => {
+        return '$' + val.toLocaleString('en-US', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    };
+
+    // Retrieve cart items from Local Storage
+    const getCart = () => {
+        return JSON.parse(localStorage.getItem('hn_cart') || '[]');
+    };
+
+    // Save cart items to Local Storage
+    const saveCart = (cart) => {
+        localStorage.setItem('hn_cart', JSON.stringify(cart));
+        updateCartDisplay();
+    };
+
+    // Delete item from cart completely
+    const deleteCartItem = (idx) => {
+        let cart = getCart();
+        cart.splice(idx, 1);
+        saveCart(cart);
+    };
+
+    // Modify item quantity in cart
+    const updateItemQty = (idx, action) => {
+        let cart = getCart();
+        if (action === 'increase') {
+            cart[idx].quantity += 1;
+        } else if (action === 'decrease' && cart[idx].quantity > 1) {
+            cart[idx].quantity -= 1;
+        }
+        saveCart(cart);
+    };
+
+    // Renders the cart lists, calculations, and empty placeholders
+    const updateCartDisplay = () => {
+        const cart = getCart();
+        const wrapper = document.getElementById('cart-content-wrapper');
+        const placeholder = document.getElementById('empty-cart-placeholder');
+        const listContainer = document.getElementById('cart-items-container');
+        const summaryContainer = document.getElementById('order-summary-breakdown');
+        const cartBadge = document.getElementById('cart-count');
+
+        // Update Nav Cart badge
+        const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.innerText = totalQty;
+
+        if (cart.length === 0) {
+            // Cart is empty, toggle wrapper and show placeholder
+            wrapper.classList.add('hidden');
+            placeholder.classList.remove('hidden');
+            placeholder.classList.add('flex');
+            return;
+        }
+
+        // Cart has items, display them
+        wrapper.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        placeholder.classList.remove('flex');
+
+        // Clear containers
+        listContainer.innerHTML = '';
+        summaryContainer.innerHTML = '';
+
+        let subtotal = 0;
+
+        cart.forEach((item, index) => {
+            const itemTotalPrice = item.price * item.quantity;
+            const itemOriginalPrice = item.originalPrice * item.quantity;
+            subtotal += itemTotalPrice;
+
+            // 1. Render item lists in Selection Column
+            const itemRow = document.createElement('div');
+            itemRow.className = 'product-item flex flex-col md:flex-row gap-8 group';
+            itemRow.innerHTML = `
+                <div class="relative w-full md:w-56 aspect-[3/4] overflow-hidden bg-surface-container-low border border-outline-variant/30">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="${item.image}" alt="${item.name}"/>
+                </div>
+                <div class="flex flex-col justify-between py-2 flex-grow">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <span class="font-label-caps text-[9px] text-secondary tracking-widest block uppercase mb-1">${item.category}</span>
+                                <h2 class="font-headline-sm text-headline-sm">${item.name}</h2>
+                            </div>
+                            <button onclick="deleteCartItem(${index})" class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors p-1" aria-label="Remove item">close</button>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="font-label-caps text-label-caps text-on-surface-variant">COLOR/FINISH: ${item.color.toUpperCase()}</p>
+                            <p class="font-label-caps text-label-caps text-on-surface-variant">SIZE/SPECS: ${item.size.toUpperCase()}</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-end mt-8">
+                        <div class="flex items-center gap-4 border border-outline-variant px-4 py-2">
+                            <button onclick="updateItemQty(${index}, 'decrease')" class="qty-btn text-on-surface-variant hover:text-primary transition-colors">—</button>
+                            <span class="qty-display font-label-md text-label-md w-4 text-center select-none">${item.quantity}</span>
+                            <button onclick="updateItemQty(${index}, 'increase')" class="qty-btn text-on-surface-variant hover:text-primary transition-colors">+</button>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-body-md text-body-md line-through text-on-surface-variant opacity-50">${formatCurrency(itemOriginalPrice)}</p>
+                            <p class="font-headline-sm text-headline-sm text-primary">${formatCurrency(itemTotalPrice)}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            listContainer.appendChild(itemRow);
+
+            // Add separation rule after item except the last one
+            if (index < cart.length - 1) {
+                const hr = document.createElement('div');
+                hr.className = 'h-px bg-outline-variant/55 w-full';
+                listContainer.appendChild(hr);
+            }
+
+            // 2. Render summary line items
+            const summaryLine = document.createElement('div');
+            summaryLine.className = 'flex justify-between font-label-caps text-label-caps text-on-surface-variant';
+            summaryLine.innerHTML = `
+                <span>${item.name} <span class="text-[10px] opacity-70">x${item.quantity}</span></span>
+                <span>${formatCurrency(itemTotalPrice)}</span>
+            `;
+            summaryContainer.appendChild(summaryLine);
+        });
+
+        // 3. Tax, Shipping, Totals calculations
+        const shipping = 0.00; // Complimentary shipping
+        const taxRate = 0.07;  // 7% tax
+        const tax = subtotal * taxRate;
+        const total = subtotal + shipping + tax;
+
+        // Render calculation summaries
+        const summaryFooter = document.createElement('div');
+        summaryFooter.className = 'space-y-4 pt-4 border-t border-outline-variant/30';
+        summaryFooter.innerHTML = `
+            <div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+                <span>Subtotal</span>
+                <span>${formatCurrency(subtotal)}</span>
+            </div>
+            <div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+                <span>Delivery Charge</span>
+                <span class="text-secondary font-bold">COMPLIMENTARY</span>
+            </div>
+            <div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+                <span>Tax (7%)</span>
+                <span>${formatCurrency(tax)}</span>
+            </div>
+        `;
+        summaryContainer.appendChild(summaryFooter);
+
+        // Update Total
+        document.getElementById('summary-total').innerText = formatCurrency(total);
+    };
+
+    // Checkout Modal interactions
+    const checkoutOrder = () => {
+        const cart = getCart();
+        if (cart.length === 0) return;
+
+        // Generate dynamic mock Order ID
+        const mockOrderId = "HN-" + Math.floor(10000 + Math.random() * 90000);
+        document.getElementById('order-id-display').innerText = `ORDER ID: #${mockOrderId}`;
+
+        // Toggle modal open
+        document.getElementById('checkout-modal').classList.add('show');
+    };
+
+    const closeSuccessModal = () => {
+        // Clear cart in Local Storage
+        localStorage.removeItem('hn_cart');
+        
+        // Hide Modal
+        document.getElementById('checkout-modal').classList.remove('show');
+        
+        // Redirect back to home collections
+        window.location.href = "../index.html";
+    };
+
+    // Floating Nav Hide on Scroll
+    let lastScroll = 0;
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            nav.style.transform = 'translateY(-100%)';
+        } else {
+            nav.style.transform = 'translateY(0)';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Run on initial load
+    window.onload = updateCartDisplay;
+</script>
+</body>
+</html>

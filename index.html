@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Home Nest Organization | Curated Luxury</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eeeeed",
+                        "surface": "#faf9f8",
+                        "secondary": "#6c5c47",
+                        "surface-bright": "#faf9f8",
+                        "tertiary-fixed": "#ffe088",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#f3dcc2",
+                        "on-secondary-container": "#70604b",
+                        "outline-variant": "#c4c7c7",
+                        "surface-variant": "#e3e2e1",
+                        "background": "#faf9f8",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "inverse-on-surface": "#f1f0f0",
+                        "surface-tint": "#5f5e5e",
+                        "secondary-fixed": "#f5dfc5",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f3f2",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-dim": "#dadad9",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#444748",
+                        "on-secondary-fixed-variant": "#534431",
+                        "tertiary-container": "#cca730",
+                        "primary": "#000000",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#474746",
+                        "surface-container-high": "#e9e8e7",
+                        "inverse-primary": "#c8c6c5",
+                        "on-primary-container": "#858383",
+                        "inverse-surface": "#2f3130",
+                        "primary-fixed": "#e5e2e1",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#d8c3aa",
+                        "on-background": "#1a1c1c",
+                        "surface-container-highest": "#e3e2e1",
+                        "outline": "#747878",
+                        "primary-container": "#1c1b1b",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#241a00",
+                        "tertiary": "#735c00",
+                        "on-secondary-fixed": "#251a0a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "gutter": "32px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .carousel-container {
+            perspective: 1500px;
+        }
+        .product-item {
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+        .product-item.active {
+            transform: translateZ(100px) scale(1.2);
+            z-index: 50;
+            opacity: 1;
+        }
+        .product-item.prev-1 { transform: translateX(-120%) translateZ(-200px) scale(0.8); z-index: 30; opacity: 0.6; }
+        .product-item.prev-2 { transform: translateX(-200%) translateZ(-400px) scale(0.6); z-index: 10; opacity: 0.3; }
+        .product-item.next-1 { transform: translateX(120%) translateZ(-200px) scale(0.8); z-index: 30; opacity: 0.6; }
+        .product-item.next-2 { transform: translateX(200%) translateZ(-400px) scale(0.6); z-index: 10; opacity: 0.3; }
+
+        /* Mobile: side items peek in from edges so users know more products exist */
+        @media (max-width: 767px) {
+            .carousel-container { perspective: 800px; overflow: visible; }
+            .product-item.active  { transform: translateZ(40px) scale(1.05); }
+            .product-item.prev-1  { transform: translateX(-65%) translateZ(-80px) scale(0.82); z-index: 30; opacity: 0.75; }
+            .product-item.prev-2  { transform: translateX(-130%) translateZ(-160px) scale(0.65); z-index: 10; opacity: 0.35; }
+            .product-item.next-1  { transform: translateX(65%) translateZ(-80px) scale(0.82); z-index: 30; opacity: 0.75; }
+            .product-item.next-2  { transform: translateX(130%) translateZ(-160px) scale(0.65); z-index: 10; opacity: 0.35; }
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .aura-blur {
+            filter: blur(80px);
+            opacity: 0.4;
+            transform: scale(1.5);
+            transition: opacity 1.5s ease;
+        }
+        /* Notification style */
+        .toast-notification {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary antialiased">
+
+<!-- Background Fixed Canvas for Scroll-Driven Animation -->
+<canvas id="bg-scroll-canvas" class="fixed inset-0 w-full h-full object-cover pointer-events-none z-0 transition-opacity duration-700 opacity-0"></canvas>
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 transition-transform duration-300">
+    <div class="flex items-center w-full px-margin-mobile md:px-[40px] py-4 md:py-5">
+        <a href="index.html" class="text-headline-md font-headline-md tracking-tighter text-primary flex-shrink-0">
+            <img alt="Home Nest Organization" class="w-auto object-contain h-16 md:h-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp-FhD0OGms9_QYxFukrPtmWAU2ymIkbZ-QojwxJEkdUazBxam-OpxGwyoH5nw-HzfHuqRnDt7mlznM3HQs9xyGwAbcr9EosqHQ3B4D_3qDVAKVluAVKLk5zpEVuYJKuiE4tGJS4fPzgfxDR8EEI-JwzPSMEvkDgkokHQeAE3KX_2Kr8MdHawUWzAiBvCCkuuGyTAv2HOuIOcK30Zug8kMls4mJtTxQnM8HRb2vKyixPa7aZtBGjKLwOz7dyMrQnbxqiHhDSg5qx4">
+        </a>
+        <div class="hidden md:flex items-center gap-gutter flex-1 justify-center">
+            <a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 transition-all duration-300" href="#shop">Shop</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#showcase">Showcase</a>
+            <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#newsletter">Newsletter</a>
+        </div>
+        <div class="flex items-center gap-6 ml-auto flex-shrink-0">
+            <a href="Home nest organization BUY/code.html" class="text-primary hover:scale-110 transition-transform relative" aria-label="View Cart">
+                <span class="material-symbols-outlined text-[28px]" data-icon="shopping_bag">shopping_bag</span>
+                <span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold scale-90" id="cart-count">0</span>
+            </a>
+            <!-- Hamburger Button (mobile only) -->
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px] focus:outline-none" aria-label="Open menu">
+                <span class="hamburger-bar block w-6 h-[2px] bg-primary transition-all duration-300 origin-center"></span>
+                <span class="hamburger-bar block w-6 h-[2px] bg-primary transition-all duration-300 origin-center"></span>
+                <span class="hamburger-bar block w-6 h-[2px] bg-primary transition-all duration-300 origin-center"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" style="opacity:0;pointer-events:none;" class="fixed inset-0 z-40 bg-white/97 backdrop-blur-2xl flex flex-col items-center justify-center gap-10 transition-all duration-500">
+    <a class="font-headline-md text-[28px] italic text-primary hover:opacity-60 transition-opacity duration-300" href="#shop" onclick="closeMobileMenu()">Shop</a>
+    <a class="font-headline-md text-[28px] italic text-on-surface-variant hover:text-primary transition-colors duration-300" href="#showcase" onclick="closeMobileMenu()">Showcase</a>
+    <a class="font-headline-md text-[28px] italic text-on-surface-variant hover:text-primary transition-colors duration-300" href="#newsletter" onclick="closeMobileMenu()">Newsletter</a>
+    <div class="mt-4 border-t border-gray-300 w-20"></div>
+    <a href="Home nest organization BUY/code.html" class="font-label-caps text-label-caps tracking-widest text-secondary hover:text-primary transition-colors uppercase text-sm">View Cart</a>
+</div>
+
+<main class="pt-20">
+    <!-- Hero Section: 3D Overlapping Carousel -->
+    <section id="shop" class="relative min-h-[780px] md:min-h-[870px] flex flex-col items-center justify-center overflow-x-clip overflow-y-hidden bg-surface-container-low py-16 md:py-24">
+        <div class="text-center mb-14 md:mb-20 z-10 px-4 -mt-20 md:-mt-36">
+            <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg italic">STORAGE &amp; ORGANIZATION</h1>
+        </div>
+        <div class="carousel-container relative w-full max-w-4xl h-[360px] md:h-[400px] flex items-center justify-center">
+            <!-- Carousel Items -->
+            <div class="relative w-full h-full flex items-center justify-center" id="carousel">
+                <!-- Item 1: table_mat -->
+                <div class="product-item absolute w-52 md:w-80 aspect-[4/5] cursor-pointer prev-2" data-id="table_mat" data-index="0">
+                    <img class="w-full h-full object-cover rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" src="all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png" alt="Premium Jute Table Mat">
+                    <div class="absolute -bottom-16 left-0 w-full text-center opacity-0 transition-opacity duration-500 details">
+                        <p class="font-headline-sm text-headline-sm">Premium Jute Table Mat</p>
+                        <p class="font-label-md text-label-md text-on-surface-variant mt-1">$35.00</p>
+                    </div>
+                </div>
+                <!-- Item 2: candle_stand -->
+                <div class="product-item absolute w-52 md:w-80 aspect-[4/5] cursor-pointer prev-1" data-id="candle_stand" data-index="1">
+                    <img class="w-full h-full object-cover rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" src="all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png" alt="Crystal Candle Stand">
+                    <div class="absolute -bottom-16 left-0 w-full text-center opacity-0 transition-opacity duration-500 details">
+                        <p class="font-headline-sm text-headline-sm">Crystal Candle Stand</p>
+                        <p class="font-label-md text-label-md text-on-surface-variant mt-1">$85.00</p>
+                    </div>
+                </div>
+                <!-- Item 3: tissue_box -->
+                <div class="product-item absolute w-52 md:w-80 aspect-[4/5] cursor-pointer active" data-id="tissue_box" data-index="2">
+                    <img class="w-full h-full object-cover rounded-lg shadow-2xl grayscale-0 transition-all duration-700" src="all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png" alt="Luxury Tissue Box">
+                    <div class="absolute -bottom-16 left-0 w-full text-center opacity-100 transition-opacity duration-500 details">
+                        <p class="font-headline-sm text-headline-sm">Luxury Tissue Box</p>
+                        <p class="font-label-md text-label-md text-on-surface-variant mt-1">$45.00</p>
+                    </div>
+                </div>
+                <!-- Item 4: cosmetic_box -->
+                <div class="product-item absolute w-52 md:w-80 aspect-[4/5] cursor-pointer next-1" data-id="cosmetic_box" data-index="3">
+                    <img class="w-full h-full object-cover rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" src="all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png" alt="Cosmetics Storage Box">
+                    <div class="absolute -bottom-16 left-0 w-full text-center opacity-0 transition-opacity duration-500 details">
+                        <p class="font-headline-sm text-headline-sm">Cosmetics Storage Box</p>
+                        <p class="font-label-md text-label-md text-on-surface-variant mt-1">$120.00</p>
+                    </div>
+                </div>
+                <!-- Item 5: hanging_tub -->
+                <div class="product-item absolute w-52 md:w-80 aspect-[4/5] cursor-pointer next-2" data-id="hanging_tub" data-index="4">
+                    <img class="w-full h-full object-cover rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" src="all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png" alt="Wall Hanging Flower Tub">
+                    <div class="absolute -bottom-16 left-0 w-full text-center opacity-0 transition-opacity duration-500 details">
+                        <p class="font-headline-sm text-headline-sm">Wall Hanging Flower Tub</p>
+                        <p class="font-label-md text-label-md text-on-surface-variant mt-1">$55.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Product Showcase Section -->
+    <section id="showcase" class="max-w-container-max mx-auto py-10 md:py-16 space-y-16 md:space-y-20 px-margin-mobile md:px-margin-desktop">
+        <!-- Block 1: Table Mat -->
+        <div class="relative group" id="block-table_mat">
+            <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+                <img class="aura-blur w-full h-full object-cover" src="all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png" alt="Aura background">
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-gutter">
+                <a href="Home nest organization product/product.html?id=table_mat" class="w-full md:w-1/2 aspect-[4/5] bg-surface-variant overflow-hidden shadow-2xl block cursor-pointer">
+                    <img class="showcase-img w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[1500ms]" data-id="table_mat" src="all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png" alt="Premium Jute Table Mat">
+                </a>
+                <div class="w-full md:w-1/2 space-y-6 md:-ml-8 md:pl-16 bg-surface/40 backdrop-blur-md p-8 md:p-14 border border-white/20 shadow-xl self-center">
+                    <div class="space-y-4">
+                        <span class="font-label-caps text-label-caps tracking-widest text-secondary">DINING ACCESSORIES</span>
+                        <h2 class="font-display-lg text-headline-md md:text-[38px] italic leading-tight hover:opacity-80"><a href="Home nest organization product/product.html?id=table_mat">Premium Jute Table Mat / প্রিমিয়াম জুট টেবিল ম্যাট</a></h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Elegant table mats made from organic jute and high-quality thread, bringing natural beauty and organic craftsmanship to your dining space.</p>
+                    </div>
+                    <div class="flex flex-col items-start gap-4">
+                        <span class="font-headline-sm text-headline-sm">$35.00</span>
+                        <div class="flex flex-wrap gap-4 w-full">
+                            <button onclick="buyNow('table_mat')" class="flex-1 md:flex-none px-6 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps hover:bg-secondary transition-all duration-300 active:scale-95 text-center">Buy Now</button>
+                            <button onclick="addToCart('table_mat')" class="flex-1 md:flex-none px-6 py-4 border border-primary text-primary rounded-full font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 active:scale-95 text-center">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block 2: Candle Stand (Reversed) -->
+        <div class="relative group" id="block-candle_stand">
+            <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+                <img class="aura-blur w-full h-full object-cover" src="all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png" alt="Aura background">
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row-reverse items-center gap-gutter">
+                <a href="Home nest organization product/product.html?id=candle_stand" class="w-full md:w-1/2 aspect-[4/5] bg-surface-variant overflow-hidden shadow-2xl block cursor-pointer">
+                    <img class="showcase-img w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[1500ms]" data-id="candle_stand" src="all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png" alt="Crystal Candle Stand">
+                </a>
+                <div class="w-full md:w-1/2 space-y-6 md:-mr-8 md:pr-16 bg-surface/40 backdrop-blur-md p-8 md:p-14 border border-white/20 shadow-xl self-center">
+                    <div class="space-y-4">
+                        <span class="font-label-caps text-label-caps tracking-widest text-secondary">HOME DECOR</span>
+                        <h2 class="font-display-lg text-headline-md md:text-[38px] italic leading-tight hover:opacity-80"><a href="Home nest organization product/product.html?id=candle_stand">Crystal Candle Stand / ক্রিস্টাল মোমবাতি স্ট্যান্ড</a></h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Sophisticated crystal candle stands designed to catch the light beautifully and create a warm, premium luxury ambiance in your living room.</p>
+                    </div>
+                    <div class="flex flex-col items-start gap-4">
+                        <span class="font-headline-sm text-headline-sm">$85.00</span>
+                        <div class="flex flex-wrap gap-4 w-full">
+                            <button onclick="buyNow('candle_stand')" class="flex-1 md:flex-none px-6 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps hover:bg-secondary transition-all duration-300 active:scale-95 text-center">Buy Now</button>
+                            <button onclick="addToCart('candle_stand')" class="flex-1 md:flex-none px-6 py-4 border border-primary text-primary rounded-full font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 active:scale-95 text-center">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block 3: Tissue Box -->
+        <div class="relative group" id="block-tissue_box">
+            <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+                <img class="aura-blur w-full h-full object-cover" src="all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png" alt="Aura background">
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-gutter">
+                <a href="Home nest organization product/product.html?id=tissue_box" class="w-full md:w-1/2 aspect-[4/5] bg-surface-variant overflow-hidden shadow-2xl block cursor-pointer">
+                    <img class="showcase-img w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[1500ms]" data-id="tissue_box" src="all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png" alt="Luxury Tissue Box">
+                </a>
+                <div class="w-full md:w-1/2 space-y-6 md:-ml-8 md:pl-16 bg-surface/40 backdrop-blur-md p-8 md:p-14 border border-white/20 shadow-xl self-center">
+                    <div class="space-y-4">
+                        <span class="font-label-caps text-label-caps tracking-widest text-secondary">LIVING ROOM ORGANIZER</span>
+                        <h2 class="font-display-lg text-headline-md md:text-[38px] italic leading-tight hover:opacity-80"><a href="Home nest organization product/product.html?id=tissue_box">Luxury Tissue Box / লাক্সারি টিস্যু বক্স</a></h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">A sleek and modern tissue box organizer that seamlessly blends utility with exquisite design. Redefining convenience with style.</p>
+                    </div>
+                    <div class="flex flex-col items-start gap-4">
+                        <span class="font-headline-sm text-headline-sm">$45.00</span>
+                        <div class="flex flex-wrap gap-4 w-full">
+                            <button onclick="buyNow('tissue_box')" class="flex-1 md:flex-none px-6 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps hover:bg-secondary transition-all duration-300 active:scale-95 text-center">Buy Now</button>
+                            <button onclick="addToCart('tissue_box')" class="flex-1 md:flex-none px-6 py-4 border border-primary text-primary rounded-full font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 active:scale-95 text-center">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block 4: Cosmetic Box (Reversed) -->
+        <div class="relative group" id="block-cosmetic_box">
+            <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+                <img class="aura-blur w-full h-full object-cover" src="all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png" alt="Aura background">
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row-reverse items-center gap-gutter">
+                <a href="Home nest organization product/product.html?id=cosmetic_box" class="w-full md:w-1/2 aspect-[4/5] bg-surface-variant overflow-hidden shadow-2xl block cursor-pointer">
+                    <img class="showcase-img w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[1500ms]" data-id="cosmetic_box" src="all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png" alt="Cosmetics Storage Box">
+                </a>
+                <div class="w-full md:w-1/2 space-y-6 md:-mr-8 md:pr-16 bg-surface/40 backdrop-blur-md p-8 md:p-14 border border-white/20 shadow-xl self-center">
+                    <div class="space-y-4">
+                        <span class="font-label-caps text-label-caps tracking-widest text-secondary">PERSONAL CARE STORAGE</span>
+                        <h2 class="font-display-lg text-headline-md md:text-[38px] italic leading-tight hover:opacity-80"><a href="Home nest organization product/product.html?id=cosmetic_box">Cosmetics Storage Box / কসমেটিকস স্টোরেজ বক্স</a></h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Elegant storage solution for all your cosmetics, featuring organized compartments and premium crystal-clear acrylic style or wooden craftsmanship.</p>
+                    </div>
+                    <div class="flex flex-col items-start gap-4">
+                        <span class="font-headline-sm text-headline-sm">$120.00</span>
+                        <div class="flex flex-wrap gap-4 w-full">
+                            <button onclick="buyNow('cosmetic_box')" class="flex-1 md:flex-none px-6 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps hover:bg-secondary transition-all duration-300 active:scale-95 text-center">Buy Now</button>
+                            <button onclick="addToCart('cosmetic_box')" class="flex-1 md:flex-none px-6 py-4 border border-primary text-primary rounded-full font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 active:scale-95 text-center">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block 5: Hanging Tub -->
+        <div class="relative group" id="block-hanging_tub">
+            <div class="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden">
+                <img class="aura-blur w-full h-full object-cover" src="all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png" alt="Aura background">
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-gutter">
+                <a href="Home nest organization product/product.html?id=hanging_tub" class="w-full md:w-1/2 aspect-[4/5] bg-surface-variant overflow-hidden shadow-2xl block cursor-pointer">
+                    <img class="showcase-img w-full h-full object-cover scale-100 group-hover:scale-105 transition-transform duration-[1500ms]" data-id="hanging_tub" src="all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png" alt="Wall Hanging Flower Tub">
+                </a>
+                <div class="w-full md:w-1/2 space-y-6 md:-ml-8 md:pl-16 bg-surface/40 backdrop-blur-md p-8 md:p-14 border border-white/20 shadow-xl self-center">
+                    <div class="space-y-4">
+                        <span class="font-label-caps text-label-caps tracking-widest text-secondary">WALL DECOR &amp; PLANTS</span>
+                        <h2 class="font-display-lg text-headline-md md:text-[38px] italic leading-tight hover:opacity-80"><a href="Home nest organization product/product.html?id=hanging_tub">Wall Hanging Flower Tub / ওয়াল হ্যাঙ্গিং ফ্লাওয়ার টব</a></h2>
+                        <p class="font-body-md text-body-md text-on-surface-variant">Space-saving wall-hanging flower tubs to adorn your walls with fresh greenery and artistic design, bringing life into any room.</p>
+                    </div>
+                    <div class="flex flex-col items-start gap-4">
+                        <span class="font-headline-sm text-headline-sm">$55.00</span>
+                        <div class="flex flex-wrap gap-4 w-full">
+                            <button onclick="buyNow('hanging_tub')" class="flex-1 md:flex-none px-6 py-4 bg-primary text-on-primary rounded-full font-label-caps text-label-caps hover:bg-secondary transition-all duration-300 active:scale-95 text-center">Buy Now</button>
+                            <button onclick="addToCart('hanging_tub')" class="flex-1 md:flex-none px-6 py-4 border border-primary text-primary rounded-full font-label-caps text-label-caps hover:bg-primary hover:text-on-primary transition-all duration-300 active:scale-95 text-center">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter / Minimal Banner -->
+    <section id="newsletter" class="bg-surface-container py-24 text-center">
+        <div class="max-w-2xl mx-auto px-margin-mobile">
+            <h2 class="font-headline-md text-headline-md mb-6">Join the inner circle</h2>
+            <p class="font-body-md text-body-md mb-10 text-on-surface-variant">Receive exclusive access to seasonal launches, architectural curation and interior stories.</p>
+            <form onsubmit="handleSubscribe(event)" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <input class="bg-transparent border-b border-primary text-primary font-label-caps text-label-caps py-2 w-full sm:w-80 focus:ring-0 focus:outline-none transition-all placeholder:text-on-surface-variant/50" placeholder="EMAIL ADDRESS" type="email" required>
+                <button class="font-label-caps text-label-caps text-primary border-b-2 border-primary hover:text-on-surface-variant hover:border-on-surface-variant transition-all pb-1 active:scale-95" type="submit">SUBSCRIBE</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface w-full py-20 border-t border-outline-variant">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+        <div class="col-span-1 mb-8 md:mb-0">
+            <div class="text-headline-sm font-headline-sm text-primary mb-4">
+                <img alt="Home Nest Organization" class="w-auto object-contain h-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp-FhD0OGms9_QYxFukrPtmWAU2ymIkbZ-QojwxJEkdUazBxam-OpxGwyoH5nw-HzfHuqRnDt7mlznM3HQs9xyGwAbcr9EosqHQ3B4D_3qDVAKVluAVKLk5zpEVuYJKuiE4tGJS4fPzgfxDR8EEI-JwzPSMEvkDgkokHQeAE3KX_2Kr8MdHawUWzAiBvCCkuuGyTAv2HOuIOcK30Zug8kMls4mJtTxQnM8HRb2vKyixPa7aZtBGjKLwOz7dyMrQnbxqiHhDSg5qx4">
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant pr-8 mt-4">
+                Redefining home organization and curation. A sanctuary of exceptional design objects and neat configurations.
+            </p>
+        </div>
+        <div class="mb-8 md:mb-0">
+            <h4 class="font-label-caps text-label-caps mb-6 text-primary font-bold">Discover</h4>
+            <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+                <li><a class="hover:text-primary transition-colors" href="#">Brand Story</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Curation</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#shop">Collections</a></li>
+            </ul>
+        </div>
+        <div class="mb-8 md:mb-0">
+            <h4 class="font-label-caps text-label-caps mb-6 text-primary font-bold">Support</h4>
+            <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+                <li><a class="hover:text-primary transition-colors" href="#">Customer Care</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; Delivery</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Returns &amp; Exchanges</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-label-caps text-label-caps mb-6 text-primary font-bold">Connect</h4>
+            <ul class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+                <li><a class="hover:text-primary transition-colors" href="#">Instagram</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">Pinterest</a></li>
+                <li><a class="hover:text-primary transition-colors" href="#">LinkedIn</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mt-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30 pt-8 flex flex-col md:flex-row justify-between items-center text-on-surface-variant font-label-caps text-[10px]">
+        <div>© 2026 HOME NEST ORGANIZATION. ALL RIGHTS RESERVED.</div>
+        <div class="flex gap-8 mt-4 md:mt-0">
+            <span class="cursor-pointer hover:text-primary">SUSTAINABILITY</span>
+            <span class="cursor-pointer hover:text-primary">TERMS OF USE</span>
+            <span class="cursor-pointer hover:text-primary">PRIVACY POLICY</span>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating Toast Notification -->
+<div id="toast" class="toast-notification fixed bottom-8 right-8 bg-primary text-on-primary px-6 py-4 rounded-full font-label-caps text-[12px] tracking-widest shadow-2xl z-50 flex items-center gap-3">
+    <span class="material-symbols-outlined text-[18px]">check_circle</span>
+    <span id="toast-message">ITEM ADDED TO CART</span>
+</div>
+
+<script>
+    // Shared Product Catalog
+    const PRODUCTS = {
+        table_mat: {
+            id: "table_mat",
+            name: "Premium Jute Table Mat",
+            price: 35.00,
+            originalPrice: 45.00,
+            category: "DINING ACCESSORIES",
+            image: "all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png",
+            images: [
+                "all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png",
+                "all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102733.png",
+                "all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102805.png"
+            ],
+            color: "NATURAL JUTE",
+            size: "STANDARD"
+        },
+        candle_stand: {
+            id: "candle_stand",
+            name: "Crystal Candle Stand",
+            price: 85.00,
+            originalPrice: 110.00,
+            category: "HOME DECOR",
+            image: "all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png",
+            images: [
+                "all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png",
+                "all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113054.png",
+                "all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113107.png"
+            ],
+            color: "CRYSTAL GLASS",
+            size: "ONE SIZE"
+        },
+        tissue_box: {
+            id: "tissue_box",
+            name: "Luxury Tissue Box",
+            price: 45.00,
+            originalPrice: 60.00,
+            category: "LIVING ROOM ORGANIZER",
+            image: "all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png",
+            images: [
+                "all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png",
+                "all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 102034.png",
+                "all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 102059.png"
+            ],
+            color: "CLASSIC BLACK",
+            size: "STANDARD"
+        },
+        cosmetic_box: {
+            id: "cosmetic_box",
+            name: "Cosmetics Storage Box",
+            price: 120.00,
+            originalPrice: 150.00,
+            category: "PERSONAL CARE STORAGE",
+            image: "all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png",
+            images: [
+                "all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png",
+                "all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103616.png",
+                "all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103705.png"
+            ],
+            color: "TRANSPARENT",
+            size: "LARGE"
+        },
+        hanging_tub: {
+            id: "hanging_tub",
+            name: "Wall Hanging Flower Tub",
+            price: 55.00,
+            originalPrice: 70.00,
+            category: "WALL DECOR & PLANTS",
+            image: "all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png",
+            images: [
+                "all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png",
+                "all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103216.png",
+                "all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103240.png"
+            ],
+            color: "CERAMIC WHITE",
+            size: "ONE SIZE"
+        }
+    };
+
+    // Cart Helper Logic
+    function getCart() {
+        return JSON.parse(localStorage.getItem('hn_cart') || '[]');
+    }
+
+    function saveCart(cart) {
+        localStorage.setItem('hn_cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    function updateCartCount() {
+        const cart = getCart();
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.getElementById('cart-count').innerText = count;
+    }
+
+    function addToCart(productId, options = {}) {
+        const product = PRODUCTS[productId];
+        if (!product) return;
+
+        let cart = getCart();
+        const selectedColor = options.color || product.color;
+        const selectedSize = options.size || product.size;
+
+        const existingIndex = cart.findIndex(item => 
+            item.id === productId && 
+            item.color === selectedColor && 
+            item.size === selectedSize
+        );
+
+        if (existingIndex > -1) {
+            cart[existingIndex].quantity += 1;
+        } else {
+            cart.push({
+                id: productId,
+                name: product.name,
+                price: product.price,
+                originalPrice: product.originalPrice,
+                category: product.category,
+                image: product.image,
+                color: selectedColor,
+                size: selectedSize,
+                quantity: 1
+            });
+        }
+        saveCart(cart);
+        showToast(`ADDED ${product.name.toUpperCase()} TO CART`);
+    }
+
+    function buyNow(productId, options = {}) {
+        addToCart(productId, options);
+        // Delay redirect slightly for premium feeling and toast visibility
+        setTimeout(() => {
+            window.location.href = "Home nest organization BUY/code.html";
+        }, 600);
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-message').innerText = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    }
+
+    function handleSubscribe(e) {
+        e.preventDefault();
+        showToast("THANK YOU FOR SUBSCRIBING");
+        e.target.reset();
+    }
+
+    // Carousel 3D Overlapping Logic
+    const carousel = document.getElementById('carousel');
+    const items = Array.from(carousel.querySelectorAll('.product-item'));
+    let currentIndex = 2; // Middle item ('tote') starts as active
+    let autoplayInterval;
+
+    function updateCarousel() {
+        items.forEach((item, index) => {
+            item.classList.remove('active', 'prev-1', 'prev-2', 'next-1', 'next-2');
+            const details = item.querySelector('.details');
+            const img = item.querySelector('img');
+            
+            details.style.opacity = '0';
+            img.classList.add('grayscale');
+
+            let diff = index - currentIndex;
+
+            // Loop around logic
+            if (diff < -2) diff += items.length;
+            if (diff > 2) diff -= items.length;
+
+            if (diff === 0) {
+                item.classList.add('active');
+                details.style.opacity = '1';
+                img.classList.remove('grayscale');
+            } else if (diff === -1) {
+                item.classList.add('prev-1');
+            } else if (diff === -2) {
+                item.classList.add('prev-2');
+            } else if (diff === 1) {
+                item.classList.add('next-1');
+            } else if (diff === 2) {
+                item.classList.add('next-2');
+            } else {
+                // Hide other items
+                item.style.opacity = '0';
+                item.style.pointerEvents = 'none';
+                return;
+            }
+            item.style.opacity = '';
+            item.style.pointerEvents = 'auto';
+        });
+    }
+
+    // Autoplay configuration (every 4 seconds)
+    function startAutoplay() {
+        stopAutoplay();
+        autoplayInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+        }, 4000);
+    }
+
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+        }
+    }
+
+    // Drag / Swipe Interaction Setup
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+
+    // Mouse Events
+    carousel.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        stopAutoplay();
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        currentX = e.clientX;
+    });
+
+    window.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        handleDragEnd();
+    });
+
+    // Touch Events (Mobile support)
+    carousel.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        stopAutoplay();
+    }, { passive: true });
+
+    carousel.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        currentX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        handleDragEnd();
+    });
+
+    function handleDragEnd() {
+        isDragging = false;
+        const diffX = currentX - startX;
+        const threshold = 50; // minimum drag distance in pixels to trigger slide
+
+        if (Math.abs(diffX) > threshold) {
+            if (diffX > 0) {
+                // Dragged right -> Show previous
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+            } else {
+                // Dragged left -> Show next
+                currentIndex = (currentIndex + 1) % items.length;
+            }
+            updateCarousel();
+        }
+        
+        startX = 0;
+        currentX = 0;
+        startAutoplay();
+    }
+
+    // Carousel item clicking
+    items.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+            // Ignore if it was a drag gesture
+            if (Math.abs(currentX - startX) > 10) return;
+
+            if (index === currentIndex) {
+                // Active item clicked: smooth scroll to its showcase block below
+                const id = item.dataset.id;
+                const target = document.getElementById('block-' + id);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                // Side item clicked: bring it to center first
+                currentIndex = index;
+                updateCarousel();
+                stopAutoplay();
+                startAutoplay();
+            }
+        });
+    });
+
+    // Mouse wheel interaction for carousel
+    let lastWheel = 0;
+    carousel.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const now = Date.now();
+        if (now - lastWheel < 800) return; // Debounce wheel
+        
+        stopAutoplay();
+        if (e.deltaY > 0) {
+            currentIndex = (currentIndex + 1) % items.length;
+        } else {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+        }
+        updateCarousel();
+        startAutoplay();
+        lastWheel = now;
+    }, { passive: false });
+
+    // Floating Nav Hide on Scroll
+    let lastScroll = 0;
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > lastScroll && currentScroll > 120) {
+            nav.style.transform = 'translateY(-100%)';
+        } else {
+            nav.style.transform = 'translateY(0)';
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Showcase images 3-second slideshow cycling
+    function initShowcaseSlideshow() {
+        const showcaseImages = document.querySelectorAll('.showcase-img');
+        showcaseImages.forEach(img => {
+            const productId = img.dataset.id;
+            const product = PRODUCTS[productId];
+            if (!product || !product.images || product.images.length <= 1) return;
+            
+            let imgIndex = 0;
+            setInterval(() => {
+                imgIndex = (imgIndex + 1) % product.images.length;
+                
+                // Add a beautiful smooth fade transition by briefly reducing opacity
+                img.style.transition = 'opacity 0.4s ease';
+                img.style.opacity = '0';
+                
+                setTimeout(() => {
+                    img.src = product.images[imgIndex];
+                    img.style.opacity = '1';
+                }, 400);
+            }, 3000);
+        });
+    }
+
+    // Initialize
+    updateCarousel();
+    updateCartCount();
+    startAutoplay();
+    initShowcaseSlideshow();
+
+    // Mobile Hamburger Menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerBars = document.querySelectorAll('.hamburger-bar');
+    let menuOpen = false;
+
+    function openMobileMenu() {
+        menuOpen = true;
+        mobileMenu.style.opacity = '1';
+        mobileMenu.style.pointerEvents = 'auto';
+        // Animate bars to X
+        hamburgerBars[0].style.transform = 'translateY(7px) rotate(45deg)';
+        hamburgerBars[1].style.opacity = '0';
+        hamburgerBars[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        menuOpen = false;
+        mobileMenu.style.opacity = '0';
+        mobileMenu.style.pointerEvents = 'none';
+        // Reset bars
+        hamburgerBars[0].style.transform = '';
+        hamburgerBars[1].style.opacity = '1';
+        hamburgerBars[2].style.transform = '';
+        document.body.style.overflow = '';
+    }
+
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            if (menuOpen) { closeMobileMenu(); } else { openMobileMenu(); }
+        });
+    }
+
+    // --- Premium Scroll-Driven Canvas Background Animation ---
+    const bgCanvas = document.getElementById('bg-scroll-canvas');
+    const bgCtx = bgCanvas.getContext('2d');
+    const frameCount = 240;
+    const frames = [];
+    let imagesLoadedCount = 0;
+    const showcaseSection = document.getElementById('showcase');
+    let currentFrameIndex = 1;
+
+    function getFrameUrl(index) {
+        const paddedIndex = String(index).padStart(3, '0');
+        return `ezgif-27d0a0e0b31e8dbd-jpg/ezgif-frame-${paddedIndex}.jpg`;
+    }
+
+    function drawImageResponsive(ctx, img) {
+        const canvas = ctx.canvas;
+        const iw = img.width;
+        const ih = img.height;
+        if (!iw || !ih) return;
+        
+        const cw = canvas.width;
+        const ch = canvas.height;
+        ctx.clearRect(0, 0, cw, ch);
+
+        // Universal "cover" mode to span full width and height on both mobile and desktop devices
+        const r = Math.min(cw / iw, ch / ih);
+        let nw = iw * r;
+        let nh = ih * r;
+        let ar = 1;
+        
+        if (nw < cw) ar = cw / nw;
+        if (Math.abs(ar - 1) < 1e-14 && nh < ch) ar = ch / nh;
+        nw *= ar;
+        nh *= ar;
+        
+        const srcW = iw / (nw / cw);
+        const srcH = ih / (nh / ch);
+        const srcX = (iw - srcW) * 0.5;
+        const srcY = (ih - srcH) * 0.5;
+        
+        ctx.drawImage(img, srcX, srcY, srcW, srcH, 0, 0, cw, ch);
+    }
+
+    function renderCanvasFrame() {
+        const img = frames[currentFrameIndex];
+        if (img && img.complete) {
+            drawImageResponsive(bgCtx, img);
+        }
+    }
+
+    function preloadFrames() {
+        for (let i = 1; i <= frameCount; i++) {
+            const img = new Image();
+            img.src = getFrameUrl(i);
+            img.onload = () => {
+                imagesLoadedCount++;
+                if (i === 1) {
+                    requestAnimationFrame(renderCanvasFrame);
+                }
+            };
+            frames[i] = img;
+        }
+    }
+
+    function resizeCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        bgCanvas.width = window.innerWidth * dpr;
+        bgCanvas.height = window.innerHeight * dpr;
+        requestAnimationFrame(renderCanvasFrame);
+    }
+
+    function handleScrollAnimation() {
+        if (!showcaseSection) return;
+        
+        const rect = showcaseSection.getBoundingClientRect();
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        const sectionTop = showcaseSection.offsetTop;
+        const sectionHeight = showcaseSection.offsetHeight;
+        
+        // Start fading in as the showcase section enters the screen
+        const fadeStart = sectionTop - windowHeight;
+        // Reach full visibility when top of showcase hits top of screen
+        const fadeFull = sectionTop;
+        // Start fading out when bottom of showcase starts leaving screen
+        const fadeOutStart = sectionTop + sectionHeight - windowHeight;
+        // Fully faded out when bottom of showcase is out of view
+        const fadeOutEnd = sectionTop + sectionHeight;
+        
+        let opacity = 0;
+        
+        if (scrollTop > fadeStart && scrollTop < fadeOutEnd) {
+            if (scrollTop < fadeFull) {
+                // Fading in
+                opacity = (scrollTop - fadeStart) / (fadeFull - fadeStart);
+            } else if (scrollTop > fadeOutStart) {
+                // Fading out
+                opacity = 1 - ((scrollTop - fadeOutStart) / (fadeOutEnd - fadeOutStart));
+            } else {
+                // Fully visible
+                opacity = 1;
+            }
+        } else {
+            opacity = 0;
+        }
+        
+        // Premium background backdrop: responsive opacity (35% for desktop elegance, 45% for high visibility on mobile screens)
+        const maxOpacity = window.innerWidth < 768 ? 0.45 : 0.35;
+        bgCanvas.style.opacity = (opacity * maxOpacity).toFixed(3);
+        
+        if (opacity > 0) {
+            // Map scroll progress in range to frame index (1 to 240)
+            const totalScrollRange = sectionHeight + windowHeight;
+            const currentScrollOffset = scrollTop - (sectionTop - windowHeight);
+            let progress = currentScrollOffset / totalScrollRange;
+            
+            progress = Math.max(0, Math.min(1, progress));
+            
+            const targetFrameIndex = Math.max(1, Math.min(frameCount, Math.floor(progress * frameCount) + 1));
+            
+            if (targetFrameIndex !== currentFrameIndex) {
+                currentFrameIndex = targetFrameIndex;
+                requestAnimationFrame(renderCanvasFrame);
+            }
+        }
+    }
+
+    // Initialize scroll animation systems
+    preloadFrames();
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('scroll', handleScrollAnimation, { passive: true });
+    // Initial call to set current state
+    handleScrollAnimation();
+</script>
+</body>
+</html>
