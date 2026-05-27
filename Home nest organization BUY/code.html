@@ -175,7 +175,7 @@
                 
                 <div class="pt-6 border-t border-outline-variant flex justify-between items-baseline font-semibold">
                     <span class="font-label-caps text-label-caps">Total</span>
-                    <span class="font-headline-md text-headline-md text-primary" id="summary-total">$0.00</span>
+                    <span class="font-headline-md text-headline-md text-primary" id="summary-total">৳০</span>
                 </div>
                 
                 <div class="pt-6 space-y-6">
@@ -280,9 +280,9 @@
 <script>
     // Currency formatting helper
     const formatCurrency = (val) => {
-        return '$' + val.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
+        return '৳' + val.toLocaleString('en-BD', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
         });
     };
 

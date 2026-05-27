@@ -179,8 +179,8 @@
                 <span id="product-category" class="font-label-caps text-label-caps tracking-widest text-secondary block mb-3">CATEGORY</span>
                 <h1 id="product-name" class="font-display-lg text-display-lg-mobile md:text-headline-md italic leading-tight">Product Name</h1>
                 <div class="flex items-baseline gap-4 mt-4">
-                    <span id="product-price" class="font-headline-sm text-headline-sm">$0.00</span>
-                    <span id="product-original-price" class="font-body-md text-body-md line-through text-on-surface-variant opacity-50">$0.00</span>
+                    <span id="product-price" class="font-headline-sm text-headline-sm">৳০</span>
+                    <span id="product-original-price" class="font-body-md text-body-md line-through text-on-surface-variant opacity-50">৳০</span>
                 </div>
             </div>
 
@@ -301,8 +301,8 @@
         table_mat: {
             id: "table_mat",
             name: "Premium Jute Table Mat",
-            price: 35.00,
-            originalPrice: 45.00,
+            price: 3850,
+            originalPrice: 4950,
             category: "DINING ACCESSORIES",
             image: "../all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png",
             detailImage: "../all picture/1.টেবিল ম্যাট/Screenshot 2026-05-26 102641.png",
@@ -320,8 +320,8 @@
         candle_stand: {
             id: "candle_stand",
             name: "Crystal Candle Stand",
-            price: 85.00,
-            originalPrice: 110.00,
+            price: 9350,
+            originalPrice: 12100,
             category: "HOME DECOR",
             image: "../all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png",
             detailImage: "../all picture/2. ক্রিস্টাল মোমবাতি স্ট্যান্ড/Screenshot 2026-05-26 113036.png",
@@ -339,8 +339,8 @@
         tissue_box: {
             id: "tissue_box",
             name: "Luxury Tissue Box",
-            price: 45.00,
-            originalPrice: 60.00,
+            price: 4950,
+            originalPrice: 6600,
             category: "LIVING ROOM ORGANIZER",
             image: "../all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png",
             detailImage: "../all picture/3. টিস্যু বক্স/Screenshot 2026-05-26 101959.png",
@@ -358,8 +358,8 @@
         cosmetic_box: {
             id: "cosmetic_box",
             name: "Cosmetics Storage Box",
-            price: 120.00,
-            originalPrice: 150.00,
+            price: 13200,
+            originalPrice: 16500,
             category: "PERSONAL CARE STORAGE",
             image: "../all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png",
             detailImage: "../all picture/4. কসমেটিকস স্টোরেজ বক্স/Screenshot 2026-05-26 103553.png",
@@ -377,8 +377,8 @@
         hanging_tub: {
             id: "hanging_tub",
             name: "Wall Hanging Flower Tub",
-            price: 55.00,
-            originalPrice: 70.00,
+            price: 6050,
+            originalPrice: 7700,
             category: "WALL DECOR & PLANTS",
             image: "../all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png",
             detailImage: "../all picture/5. ওয়াল হ্যাঙ্গিং টব/Screenshot 2026-05-26 103152.png",
@@ -417,9 +417,9 @@
     }
 
     function formatCurrency(val) {
-        return '$' + val.toLocaleString('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
+        return '৳' + val.toLocaleString('en-BD', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
         });
     }
 
